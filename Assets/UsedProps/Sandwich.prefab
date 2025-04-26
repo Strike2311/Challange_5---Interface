@@ -106,6 +106,7 @@ MonoBehaviour:
   forceValueMax: 15
   xSpawnLimit: 3.5
   ySpawnLocation: -1
+  yMapLimit: -2
 --- !u!54 &6295510384727659722
 Rigidbody:
   m_ObjectHideFlags: 0

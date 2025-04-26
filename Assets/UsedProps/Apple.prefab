@@ -103,9 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torqueValue: 10
   forceValueMin: 10
-  forceValueMax: 5
+  forceValueMax: 15
   xSpawnLimit: 3.5
   ySpawnLocation: -1
+  yMapLimit: -2
 --- !u!54 &3880479538624018565
 Rigidbody:
   m_ObjectHideFlags: 0

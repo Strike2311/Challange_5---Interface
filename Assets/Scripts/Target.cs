@@ -8,6 +8,7 @@ public class Target : MonoBehaviour
     public float forceValueMax = 15f;
     public float xSpawnLimit = 3.5f;
     public float ySpawnLocation = -1f;
+    public float yMapLimit = -2f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,9 +22,18 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DestroyOutOfBounds();
     }
 
+    private void OnMouseDown()
+    {
+        Destroy(gameObject);
+    }
+    void DestroyOutOfBounds() {
+        if (transform.position.y < yMapLimit) {
+            Destroy(gameObject);
+        }
+    }       
     void SetRandomPosition() {
         transform.position = new Vector3(Random.Range(-xSpawnLimit, xSpawnLimit), -1, 0);
     }
