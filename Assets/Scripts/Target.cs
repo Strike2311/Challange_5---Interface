@@ -29,16 +29,21 @@ public class Target : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
-        DestroyOutOfBounds();
+        DestroyIfOutOfBounds();
     }
 
     private void OnMouseDown()
-    {
-        Destroy(gameObject);
-        spawnManager.UpdateScore(pointValue);
-        Instantiate(explosionParticle, transform.position, transform.rotation);
+    {   if (!spawnManager.isGameOver) {
+            if (gameObject.CompareTag("GoodTarget")) {
+                spawnManager.UpdateScore(pointValue);
+            } else if (gameObject.CompareTag("BadTarget")){
+                spawnManager.SetGameOver();
+            }
+            Destroy(gameObject);
+            Instantiate(explosionParticle, transform.position, transform.rotation);
+        }
     }
-    void DestroyOutOfBounds() {
+    void DestroyIfOutOfBounds() {
         if (transform.position.y < yMapLimit) {
             Destroy(gameObject);
         }

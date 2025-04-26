@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -8,13 +10,16 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] badPrefabs;
     public float spawnInterval = 3f;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverText;
+    public Button restartButton;
     private int score;
-    private float spawnTimer;
+    public bool isGameOver;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created 
     void Start()
     {
-
+        isGameOver = false;
         StartCoroutine(SpawnTarget());
         score = 0;
         UpdateScore(0);
@@ -29,6 +34,18 @@ public class SpawnManager : MonoBehaviour
     public void UpdateScore(int scoreToAdd) {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+    }
+
+    public void SetGameOver() {
+        isGameOver = true;
+        gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
+    }
+
+    public void RestartGame() {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     GameObject getRandomObject(GameObject[] prefabs) {
