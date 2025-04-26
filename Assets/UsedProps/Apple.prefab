@@ -107,6 +107,8 @@ MonoBehaviour:
   xSpawnLimit: 3.5
   ySpawnLocation: -1
   yMapLimit: -2
+  pointValue: 1
+  explosionParticle: {fileID: 2088871590894813759, guid: 745208c9d6e104225bd99e1ab894e3bb, type: 3}
 --- !u!54 &3880479538624018565
 Rigidbody:
   m_ObjectHideFlags: 0

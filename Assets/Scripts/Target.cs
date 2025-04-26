@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Target : MonoBehaviour
@@ -9,17 +10,23 @@ public class Target : MonoBehaviour
     public float xSpawnLimit = 3.5f;
     public float ySpawnLocation = -1f;
     public float yMapLimit = -2f;
+    public int pointValue;
+
+    public ParticleSystem explosionParticle;
+    private SpawnManager spawnManager;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         rbTarget = GetComponent<Rigidbody>();
         AddRandomForce(rbTarget);
         AddRandomTorque(rbTarget);
         SetRandomPosition();
     }
 
-    // Update is called once per frame
+    // Update is called once per frame 
     void Update()
     {
         DestroyOutOfBounds();
@@ -28,6 +35,8 @@ public class Target : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        spawnManager.UpdateScore(pointValue);
+        Instantiate(explosionParticle, transform.position, transform.rotation);
     }
     void DestroyOutOfBounds() {
         if (transform.position.y < yMapLimit) {
